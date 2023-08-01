@@ -7,3 +7,19 @@ export interface Post {
 export interface PostForm {
   url: string;
 }
+
+export interface InstagramFeed {
+  count: number;
+  page_info: {
+    has_next_page: boolean;
+    end_cursor: string;
+  };
+  edges: InstagramPost[];
+}
+
+export interface InstagramPost {
+  node: {
+    id: string;
+    shortcode: string;
+  };
+}
