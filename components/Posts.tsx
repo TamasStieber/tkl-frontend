@@ -2,7 +2,7 @@ import { InstagramEmbed } from 'react-social-media-embed';
 import styles from '../styles/Home.module.css';
 import useInstagramFeed from '@/hooks/useInstagramFeed';
 
-const Post = () => {
+const Posts = () => {
   const { instagramPosts, hasNextPage, loadMore, error } = useInstagramFeed();
 
   if (error) return <p>{error.message}</p>;
@@ -23,4 +23,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default Posts;

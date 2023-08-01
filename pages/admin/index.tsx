@@ -1,5 +1,5 @@
 import AdminWrapper from "@/components/admin/AdminWrapper";
-import Post from "@/components/Post";
+import Posts from "@/components/Posts";
 
 export default function Home() {
   return (
