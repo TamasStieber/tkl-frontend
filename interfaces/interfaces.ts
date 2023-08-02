@@ -23,3 +23,12 @@ export interface InstagramPost {
     shortcode: string;
   };
 }
+
+export interface Essay {
+  _id: string;
+  title: string;
+  description: string;
+  url: string;
+  openCount: number;
+  createdAt: string;
+}

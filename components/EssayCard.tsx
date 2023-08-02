@@ -1,12 +1,22 @@
-import { EssayCardProps } from "@/interfaces/props";
-import styles from "../styles/Home.module.css";
+import { EssayCardProps } from '@/interfaces/props';
+import styles from '../styles/Home.module.css';
 
-const EssayCard = ({ title, date, description }: EssayCardProps) => {
+const EssayCard = ({ essay }: EssayCardProps) => {
+  const { title, createdAt, description, url } = essay;
+  const essayUrl = process.env.BACKEND_URL + '/essays/' + url;
+
+  const date = new Date(createdAt);
+  const formattedDate = date.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  });
+
   return (
-    <div className={styles.essay_card} onClick={() => window.open('https://www.africau.edu/images/default/sample.pdf')}>
+    <div className={styles.essay_card} onClick={() => window.open(essayUrl)}>
       <div className={styles.essay_card_title}>
         <h2>{title}</h2>
-        <p>{date}</p>
+        <p>{formattedDate}</p>
       </div>
       <hr />
       <div className={styles.essay_card_description}>

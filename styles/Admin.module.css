@@ -1,8 +1,150 @@
-.main_link {
-    background-color: rgb(255, 223, 175);
-    /* color: rgb(255, 255, 255); */
+.essay_card {
+  margin: 20px 0;
+  padding: 0 10px;
 }
 
-.main_link:hover {
-    background-color: blanchedalmond;
+.essay_card_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.essay_card_title {
+  font-size: 0.8rem;
+}
+
+.essay_card_title p {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.essay_card_options {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.5rem;
+}
+
+.essay_card_option_button {
+  display: inline;
+  background-color: transparent;
+  border: none;
+  padding: 0 10px;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.essay_card_option_button:hover {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.essay_card_body p {
+  margin: 10px 0;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.essay_card_body a {
+  text-decoration: none;
+  color: inherit;
+  color: burlywood;
+}
+
+.essay_card_body a:hover {
+  text-decoration: underline;
+}
+
+.essay_modal_body {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0;
+}
+
+.essay_modal_input,
+.essay_modal_input_error {
+  margin-top: 20px;
+  min-width: 400px;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.essay_modal_input {
+  border: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+.essay_modal_input:hover,
+.essay_modal_input_error:hover {
+  background-color: rgba(200, 200, 200, 0.05);
+}
+
+.essay_modal_input:focus,
+.essay_modal_input_error:focus {
+  outline: none;
+  background-color: transparent;
+}
+
+.essay_modal_input:focus {
+  border: 1px solid burlywood;
+}
+
+.essay_modal_input_error,
+.essay_modal_input_error:focus {
+  border: 1px solid red;
+}
+
+.essay_modal textarea {
+  resize: none;
+  overflow: auto;
+}
+
+.error_text {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.delete_modal_title {
+  color: orange;
+}
+
+.delete_modal_body {
+  margin: 30px 0;
+}
+
+.modal_buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal_buttons button {
+  margin: 0 0 0 10px;
+}
+
+.delete_button {
+  background-color: orange;
+  color: white;
+}
+
+.delete_button:hover {
+  background-color: rgb(255, 185, 55);
+}
+
+.upload_button {
+  background-color: rgb(255, 214, 160);
+}
+
+.upload_button:hover {
+  background-color: rgb(255, 222, 179);
+}
+
+.file_selection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.file_selection button {
+  margin: 0;
 }

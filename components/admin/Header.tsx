@@ -1,4 +1,4 @@
-import styles from "@/styles/Admin.module.css";
+import styles from '@/styles/Admin.module.css';
 
 const Header = () => {
   return (
@@ -9,9 +9,8 @@ const Header = () => {
         </div>
       </section>
       <nav>
-        <a className={styles.main_link} href="/">Link Post</a>
-        <a href="/admin/posts">Manage Posts</a>
-        <a href="/admin/posts">Manage Essays</a>
+        <a href='/admin/'>Manage Posts</a>
+        <a href='/admin/'>Change Password</a>
       </nav>
     </header>
   );

@@ -8,10 +8,15 @@ body {
   overflow-x: hidden;
   padding: 0;
   margin: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   min-height: 100vh;
   color: #424242;
   caret-color: transparent;
+}
+
+input,
+textarea {
+  caret-color: initial;
 }
 
 h1,
@@ -82,7 +87,7 @@ button {
   color: inherit;
   cursor: pointer;
   display: block;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   margin: auto;
   min-height: 3rem;
@@ -104,11 +109,9 @@ button:active {
 }
 
 @media only screen and (max-width: 600px) {
-
 }
 
 @media only screen and (min-width: 768px) {
-
 }
 
 @media only screen and (min-width: 1200px) {
