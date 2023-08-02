@@ -9,9 +9,14 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-  min-height: 100vh;
   color: #424242;
   caret-color: transparent;
+}
+
+#container {
+  /* display: flex; */
+  /* flex-direction: column; */
+  min-height: 100vh;
 }
 
 input,
@@ -36,8 +41,21 @@ nav a {
   color: inherit;
 }
 
-nav a:hover {
+/* nav a:hover {
   background-color: blanchedalmond;
+} */
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #000;
+  transition: width 0.3s;
 }
 
 nav {
@@ -72,7 +90,7 @@ footer {
   background-color: #f9ece3;
   text-align: center;
   padding: 20px 0;
-  margin-top: 50px;
+  margin-top: auto;
 }
 
 footer p {
@@ -86,7 +104,9 @@ button {
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   color: inherit;
   cursor: pointer;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   margin: auto;
