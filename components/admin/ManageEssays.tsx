@@ -1,10 +1,12 @@
 import useEssays from '@/hooks/useEssays';
-import EssayCard from './EssayCard';
+import AdminEssayCard from './AdminEssayCard';
 import EssayModal from './EssayModal';
 import { useState } from 'react';
+import Spinner from '../Spinner';
 
 const ManageEssays = () => {
-  const { essays, createEssay, deleteEssay } = useEssays();
+  const { essays, createEssay, deleteEssay, isLoading, isCreating } =
+    useEssays();
   const [isOpen, setOpen] = useState(false);
 
   const openModal = () => setOpen(true);
@@ -17,15 +19,20 @@ const ManageEssays = () => {
         isOpen={isOpen}
         closeModal={closeModal}
         createEssay={createEssay}
+        isCreating={isCreating}
       />
-      {essays.length > 0 &&
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        essays.length > 0 &&
         essays.map((essay) => (
-          <EssayCard
+          <AdminEssayCard
             key={essay._id}
             essay={essay}
             deleteHandler={deleteEssay}
           />
-        ))}
+        ))
+      )}
     </>
   );
 };

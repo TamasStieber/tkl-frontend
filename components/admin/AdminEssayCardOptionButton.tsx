@@ -1,4 +1,4 @@
-import { EssayCardOptionButtonProps } from '@/interfaces/props';
+import { AdminEssayCardOptionButtonProps } from '@/interfaces/props';
 import styles from '@/styles/Admin.module.css';
 import { useState } from 'react';
 
@@ -6,7 +6,7 @@ const EssayCardOptionButton = ({
   icon,
   hoverColor,
   onClick,
-}: EssayCardOptionButtonProps) => {
+}: AdminEssayCardOptionButtonProps) => {
   const [isHovering, setIsHovering] = useState(false);
   const Icon = icon;
 

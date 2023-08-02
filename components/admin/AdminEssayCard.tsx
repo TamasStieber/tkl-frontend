@@ -1,11 +1,11 @@
-import { EssayCardProps } from '@/interfaces/props';
+import { AdminEssayCardProps } from '@/interfaces/props';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import styles from '@/styles/Admin.module.css';
-import EssayCardOptionButton from './EssayCardOptionButton';
+import AdminEssayCardOptionButton from './AdminEssayCardOptionButton';
 import { useState } from 'react';
 import DeleteEssayModal from './DeleteEssayModal';
 
-const EssayCard = ({ essay, deleteHandler }: EssayCardProps) => {
+const EssayCard = ({ essay, deleteHandler }: AdminEssayCardProps) => {
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const openDeleteModal = () => setDeleteModalOpen(true);
@@ -27,7 +27,7 @@ const EssayCard = ({ essay, deleteHandler }: EssayCardProps) => {
             <p>{`${formattedDate} • Views: ${essay.openCount}`}</p>
           </div>
           <div className={styles.essay_card_options}>
-            <EssayCardOptionButton
+            <AdminEssayCardOptionButton
               icon={AiOutlineDelete}
               hoverColor='red'
               onClick={openDeleteModal}

@@ -2,8 +2,14 @@ import { EssayModalProps } from '@/interfaces/props';
 import styles from '@/styles/Admin.module.css';
 import { useRef, useState } from 'react';
 import Modal from 'react-modal';
+import Spinner from '../Spinner';
 
-const EssayModal = ({ isOpen, closeModal, createEssay }: EssayModalProps) => {
+const EssayModal = ({
+  isOpen,
+  closeModal,
+  createEssay,
+  isCreating,
+}: EssayModalProps) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -15,7 +21,9 @@ const EssayModal = ({ isOpen, closeModal, createEssay }: EssayModalProps) => {
   const [fileName, setFileName] = useState('No file selected');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const characterLimit = 210;
+  Modal.setAppElement('#main');
+
+  const characterLimit = 250;
 
   const close = () => {
     setTitleInputError(null);
@@ -76,11 +84,11 @@ const EssayModal = ({ isOpen, closeModal, createEssay }: EssayModalProps) => {
   };
 
   const validateForm = () => {
-    if (
-      validateTitleInput() &&
-      validateDescriptionInput() &&
-      validateFileInput()
-    ) {
+    const isTitleValid = validateTitleInput();
+    const isDescriptionValid = validateDescriptionInput();
+    const isFileValid = validateFileInput();
+
+    if (isTitleValid && isDescriptionValid && isFileValid) {
       return true;
     } else return false;
   };
@@ -105,8 +113,7 @@ const EssayModal = ({ isOpen, closeModal, createEssay }: EssayModalProps) => {
       fileInputRef.current?.files ? fileInputRef.current.files[0] : ''
     );
 
-    close();
-    createEssay(essayFormData);
+    if (await createEssay(essayFormData)) close();
   };
 
   const customStyles = {
@@ -117,6 +124,9 @@ const EssayModal = ({ isOpen, closeModal, createEssay }: EssayModalProps) => {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+    },
+    overlay: {
+      backgroundColor: 'rgba(0, 0, 0, 0.2)',
     },
   };
 
@@ -191,8 +201,12 @@ const EssayModal = ({ isOpen, closeModal, createEssay }: EssayModalProps) => {
           />
         </div>
         <div className={styles.modal_buttons}>
-          <button onClick={submitHandler} className={styles.upload_button}>
-            Upload
+          <button
+            onClick={submitHandler}
+            className={styles.upload_button}
+            disabled={isCreating}
+          >
+            {isCreating ? <Spinner size={30} /> : 'Upload'}
           </button>
           <button onClick={close}>Cancel</button>
         </div>

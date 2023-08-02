@@ -14,10 +14,15 @@ export interface AdminWrapperProps {
 
 export interface EssayCardProps {
   essay: Essay;
+  updateHandler: (id: string) => void;
+}
+
+export interface AdminEssayCardProps {
+  essay: Essay;
   deleteHandler: (id: string) => void;
 }
 
-export interface EssayCardOptionButtonProps {
+export interface AdminEssayCardOptionButtonProps {
   icon: IconType;
   hoverColor: string;
   onClick?: () => void;
@@ -33,5 +38,10 @@ export interface DeleteEssayModalProps {
 export interface EssayModalProps {
   isOpen: boolean;
   closeModal: () => void;
-  createEssay: (formData: FormData) => void;
+  createEssay: (formData: FormData) => Promise<boolean>;
+  isCreating: boolean;
+}
+
+export interface SpinnerProps {
+  size?: number;
 }

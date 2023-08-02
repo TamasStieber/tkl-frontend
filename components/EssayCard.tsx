@@ -1,7 +1,7 @@
 import { EssayCardProps } from '@/interfaces/props';
 import styles from '../styles/Home.module.css';
 
-const EssayCard = ({ essay }: EssayCardProps) => {
+const EssayCard = ({ essay, updateHandler }: EssayCardProps) => {
   const { title, createdAt, description, url } = essay;
   const essayUrl = process.env.BACKEND_URL + '/essays/' + url;
 
@@ -12,8 +12,13 @@ const EssayCard = ({ essay }: EssayCardProps) => {
     year: 'numeric',
   });
 
+  const handleClick = () => {
+    updateHandler(essay._id);
+    window.open(essayUrl);
+  };
+
   return (
-    <div className={styles.essay_card} onClick={() => window.open(essayUrl)}>
+    <div className={styles.essay_card} onClick={handleClick}>
       <div className={styles.essay_card_title}>
         <h2>{title}</h2>
         <p>{formattedDate}</p>

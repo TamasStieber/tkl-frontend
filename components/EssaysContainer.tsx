@@ -1,9 +1,12 @@
 import EssayCard from './EssayCard';
 import styles from '../styles/Home.module.css';
 import useEssays from '@/hooks/useEssays';
+import Spinner from './Spinner';
 
 const EssaysContainer = () => {
-  const { essays, deleteEssay } = useEssays();
+  const { essays, updateEssay, isLoading } = useEssays();
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className={styles.essays_container}>
@@ -12,7 +15,7 @@ const EssaysContainer = () => {
           <EssayCard
             key={essay._id}
             essay={essay}
-            deleteHandler={() => deleteEssay(essay._id)}
+            updateHandler={() => updateEssay(essay._id)}
           />
         ))}
     </div>

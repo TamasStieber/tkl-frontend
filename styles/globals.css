@@ -108,6 +108,15 @@ button:active {
   transform: translateY(0);
 }
 
+button:disabled {
+  cursor: auto;
+}
+
+button:disabled:hover {
+  box-shadow: none;
+  transform: none;
+}
+
 @media only screen and (max-width: 600px) {
 }
 

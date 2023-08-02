@@ -9,7 +9,7 @@ const Header = () => {
         </div>
       </section>
       <nav>
-        <a href='/admin/'>Manage Posts</a>
+        <a href='/admin/'>Manage Essays</a>
         <a href='/admin/'>Change Password</a>
       </nav>
     </header>

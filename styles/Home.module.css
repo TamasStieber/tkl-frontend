@@ -29,11 +29,10 @@
 
 .essay_card:hover {
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-
 }
 
 .essay_card:hover .essay_card_title {
-  color: #d1953b;
+  color: burlywood;
 }
 
 .essay_card hr {
