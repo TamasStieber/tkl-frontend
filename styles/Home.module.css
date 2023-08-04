@@ -6,7 +6,7 @@
 
 .quote {
   display: none;
-  font-family: 'Borel', cursive;
+  font-family: 'Lora', serif;
   text-align: center;
 }
 
@@ -62,7 +62,6 @@
 }
 
 .essay_card_description {
-  font-style: italic;
   font-size: 0.8rem;
 }
 

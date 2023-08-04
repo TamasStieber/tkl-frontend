@@ -1,8 +1,8 @@
 import MainWrapper from '@/components/MainWrapper';
 
-export default function Essays() {
+export default function PersonalisedBookLists() {
   return (
-    <MainWrapper title='Contact'>
+    <MainWrapper title='Personalised Book Lists'>
       <></>
     </MainWrapper>
   );
