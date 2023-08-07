@@ -1,11 +1,10 @@
-import AdminWrapper from "@/components/admin/AdminWrapper";
-import ManageEssays from "@/components/admin/ManageEssays";
-import Posts from "@/components/Posts";
+import AdminWrapper from '@/components/admin/AdminWrapper';
+import ManageEssays from '@/components/admin/ManageEssays';
 
 export default function Essays() {
   return (
-    <AdminWrapper title="Manage Essays">
+    <AdminWrapper title='Manage Essays'>
       <ManageEssays />
     </AdminWrapper>
-  )
+  );
 }

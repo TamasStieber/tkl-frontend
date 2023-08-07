@@ -1,7 +1,13 @@
 export interface Post {
-  _id: string;
+  postId: string;
+  text: string;
+  createdAt: string;
+  photos: Photo[];
+}
+
+export interface Photo {
+  photoId: string;
   url: string;
-  createdAt: Date;
 }
 
 export interface PostForm {
@@ -21,6 +27,34 @@ export interface InstagramPost {
   node: {
     id: string;
     shortcode: string;
+  };
+}
+
+export interface InstagramPostExtended {
+  shortcode_media: {
+    id: string;
+    shortcode: string;
+    display_url: string;
+    edge_media_to_caption: {
+      edges: InstagramPostText[];
+    };
+    edge_sidecar_to_children: {
+      edges: InstagramPostPhoto[];
+    };
+  };
+}
+
+export interface InstagramPostText {
+  node: {
+    created_at: string;
+    text: string;
+  };
+}
+
+export interface InstagramPostPhoto {
+  node: {
+    id: string;
+    display_url: string;
   };
 }
 

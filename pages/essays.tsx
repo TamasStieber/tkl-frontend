@@ -1,13 +1,10 @@
-import EssaysContainer from "@/components/EssaysContainer";
-import MainWrapper from "@/components/MainWrapper";
-import PublicWrapper from "@/components/PublicWrapper";
+import EssaysContainer from '@/components/public/EssaysContainer';
+import PublicWrapper from '@/components/public/PublicWrapper';
 
 export default function Essays() {
   return (
-    <MainWrapper title="Essays">
-      <PublicWrapper title="Essays">
-        <EssaysContainer />
-      </PublicWrapper>
-    </MainWrapper>
+    <PublicWrapper title='Essays'>
+      <EssaysContainer />
+    </PublicWrapper>
   );
 }

@@ -1,9 +1,9 @@
-import MainWrapper from '@/components/MainWrapper';
+import PublicWrapper from '@/components/public/PublicWrapper';
 
 export default function PersonalisedBookLists() {
   return (
-    <MainWrapper title='Personalised Book Lists'>
+    <PublicWrapper title='Personalised Book Lists'>
       <></>
-    </MainWrapper>
+    </PublicWrapper>
   );
 }

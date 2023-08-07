@@ -12,21 +12,39 @@ const useEssays = () => {
 
   useEffect(() => {
     setLoading(true);
-    try {
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-          if (!data.error) {
-            setEssays(data);
-          } else {
-            setError(new Error('An error occurred'));
-          }
-        });
-    } catch (error) {
-      setError(error as Error);
-    } finally {
-      setLoading(false);
-    }
+    const fetchEssays = async () => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if (!data.error) {
+          setEssays(data);
+        } else {
+          setError(new Error('An error occurred'));
+        }
+      } catch (error) {
+        setError(error as Error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEssays();
+    // try {
+    // fetch(url)
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     if (!data.error) {
+    //       setEssays(data);
+    //     } else {
+    //       setError(new Error('An error occurred'));
+    //     }
+    //   });
+    // } catch (error) {
+    //   setError(error as Error);
+    // } finally {
+    //   setLoading(false);
+    //   console.log('fin');
+    // }
   }, [url]);
 
   // const createEssay = (formData: FormData) => {

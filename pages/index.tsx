@@ -1,10 +1,10 @@
-import MainWrapper from "@/components/MainWrapper";
-import Posts from "@/components/Posts";
+import Posts from '@/components/public/Posts';
+import PublicWrapper from '@/components/public/PublicWrapper';
 
 export default function Home() {
   return (
-    <MainWrapper title="Home">
+    <PublicWrapper title='Home'>
       <Posts />
-    </MainWrapper>
-  )
+    </PublicWrapper>
+  );
 }

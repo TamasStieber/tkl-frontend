@@ -66,8 +66,27 @@
 }
 
 .post {
+  padding: 10px;
   max-width: 800px;
   margin: auto;
+}
+
+.post_date {
+  padding: 10px 0;
+  color: burlywood;
+  border-bottom: 1px solid burlywood;
+}
+
+.post_text {
+  white-space: pre-line;
+  margin-top: 10px;
+}
+
+.post_separator {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 30%;
+  border-bottom: 7px dotted burlywood;
 }
 
 .logo {
@@ -83,6 +102,10 @@
 
 .menu_button {
   margin: 0;
+}
+
+.active {
+  color: burlywood;
 }
 
 .active::after {

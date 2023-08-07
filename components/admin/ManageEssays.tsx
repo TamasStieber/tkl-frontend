@@ -2,7 +2,7 @@ import useEssays from '@/hooks/useEssays';
 import AdminEssayCard from './AdminEssayCard';
 import EssayModal from './EssayModal';
 import { useState } from 'react';
-import Spinner from '../Spinner';
+import Spinner from '../common/Spinner';
 
 const ManageEssays = () => {
   const { essays, createEssay, deleteEssay, isLoading, isCreating } =

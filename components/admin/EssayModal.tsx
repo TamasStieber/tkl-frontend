@@ -2,7 +2,7 @@ import { EssayModalProps } from '@/interfaces/props';
 import styles from '@/styles/Admin.module.css';
 import { useRef, useState } from 'react';
 import Modal from 'react-modal';
-import Spinner from '../Spinner';
+import Spinner from '../common/Spinner';
 
 const EssayModal = ({
   isOpen,
