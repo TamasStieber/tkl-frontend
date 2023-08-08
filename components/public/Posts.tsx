@@ -2,11 +2,13 @@ import { InstagramEmbed } from 'react-social-media-embed';
 import styles from '@/styles/Home.module.css';
 import useInstagramFeed from '@/hooks/useInstagramFeed';
 import Post from './Post';
+import Spinner from '../common/Spinner';
 
 const Posts = () => {
-  const { instagramPosts, hasNextPage, loadMore, error } = useInstagramFeed();
+  const { instagramPosts, hasNextPage, loadMore, isLoading, error } = useInstagramFeed();
 
-  // if (error) return <p>{error.message}</p>;
+  if (isLoading) return <Spinner />;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <>
