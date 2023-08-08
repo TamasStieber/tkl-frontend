@@ -66,3 +66,24 @@ export interface Essay {
   openCount: number;
   createdAt: string;
 }
+
+export interface IBook {
+  _id: string,
+  title: string;
+  author: string;
+  description?: string
+  href: string;
+  photoUrl: string;
+  createdAt: string
+}
+
+export interface IBookList {
+  _id: string;
+  title: string;
+  url: string;
+  description: string;
+  photoUrl: string;
+  isHidden: boolean;
+  books: IBook[];
+  createdAt: string
+}
