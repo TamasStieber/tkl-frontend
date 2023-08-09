@@ -1,9 +1,10 @@
-import adminMenuItems from '@/utils/adminMenuItems';
-import menuItems from '@/utils/menuItems';
+// import adminMenuItems from '@/utils/adminMenuItems';
+// import menuItems from '@/utils/menuItems';
 import { useState } from 'react';
 import styles from '@/styles/Home.module.css';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { useRouter } from 'next/router';
+import { adminMenuItems, publicMmenuItems } from '@/utils/menuItems';
 
 interface NavbarProps {
   display: 'public' | 'admin';
@@ -11,7 +12,7 @@ interface NavbarProps {
 }
 
 const Navbar = ({ display, showMenu }: NavbarProps) => {
-  const menuItemsToDisplay = display === 'public' ? menuItems : adminMenuItems;
+  const menuItemsToDisplay = display === 'public' ? publicMmenuItems : adminMenuItems;
 
   const router = useRouter();
 

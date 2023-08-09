@@ -1,4 +1,4 @@
-const menuItems = [
+export const publicMmenuItems = [
     {
         displayText: 'Home',
         href: '/',
@@ -21,4 +21,21 @@ const menuItems = [
     }
 ]
 
-export default menuItems
+export const adminMenuItems = [
+    {
+      displayText: 'Admin Home',
+      href: '/admin',
+    },
+    {
+      displayText: 'Essays',
+      href: '/admin/essays',
+    },
+    {
+      displayText: 'Books & Book Lists',
+      href: '/admin/book-lists',
+    },
+    {
+      displayText: 'Change Password',
+      href: '/admin/change-password',
+    },
+  ];
