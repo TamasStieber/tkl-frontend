@@ -6,14 +6,15 @@
 
 .quote {
   display: none;
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   text-align: center;
 }
 
-.essays_container {
+.grid_container {
   display: grid;
   justify-content: space-evenly;
   row-gap: 50px;
+  align-items: start;
 }
 
 .essay_card {
@@ -65,6 +66,43 @@
   font-size: 0.8rem;
 }
 
+.book_card {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 5px 10px;
+  transition: all 0.3s;
+}
+
+.book_card img {
+  cursor: pointer;
+}
+
+.book_card:hover {
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px; */
+}
+
+.book_card:hover .book_card_title {
+  color: burlywood;
+}
+
+.book_card_title {
+  text-align: center;
+  transition: all 0.3s;
+  margin: 10px 0;
+}
+
+.book_card_title h2 {
+  font-size: 1.2rem;
+}
+
+.book_card_title p {
+  font-size: 0.8rem;
+  color: gray;
+  margin: 5px 0;
+}
+
 .post {
   padding: 10px;
   max-width: 800px;
@@ -113,19 +151,19 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .essays_container {
+  .grid_container {
     grid-template-columns: auto;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  .essays_container {
+  .grid_container {
     grid-template-columns: auto auto;
   }
 }
 
 @media only screen and (min-width: 1200px) {
-  .essays_container {
+  .grid_container {
     grid-template-columns: auto auto auto;
     justify-content: space-between;
   }

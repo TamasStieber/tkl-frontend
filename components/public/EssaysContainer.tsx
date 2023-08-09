@@ -1,7 +1,7 @@
-import EssayCard from './EssayCard';
-import styles from '@/styles/Home.module.css';
-import useEssays from '@/hooks/useEssays';
-import Spinner from '../common/Spinner';
+import EssayCard from "./EssayCard";
+import styles from "@/styles/Home.module.css";
+import useEssays from "@/hooks/useEssays";
+import Spinner from "../common/Spinner";
 
 const EssaysContainer = () => {
   const { essays, updateEssay, isLoading } = useEssays();
@@ -9,7 +9,7 @@ const EssaysContainer = () => {
   if (isLoading) return <Spinner />;
 
   return (
-    <div className={styles.essays_container}>
+    <div className={styles.grid_container}>
       {essays.length > 0 &&
         essays.map((essay) => (
           <EssayCard

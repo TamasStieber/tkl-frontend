@@ -68,13 +68,13 @@ export interface Essay {
 }
 
 export interface IBook {
-  _id: string,
+  _id: string;
   title: string;
   author: string;
-  description?: string
+  description?: string;
   href: string;
   photoUrl: string;
-  createdAt: string
+  createdAt: string;
 }
 
 export interface IBookList {
@@ -85,5 +85,13 @@ export interface IBookList {
   photoUrl: string;
   isHidden: boolean;
   books: IBook[];
-  createdAt: string
+  createdAt: string;
+}
+
+export interface IBookFormData {
+  title: string;
+  author: string;
+  description: string;
+  href: string;
+  photoUrl: string;
 }
