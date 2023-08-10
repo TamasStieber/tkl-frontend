@@ -1,9 +1,11 @@
-.essay_card {
+.essay_card,
+.book_card {
   margin: 20px 0;
   padding: 0 10px;
 }
 
-.essay_card_head {
+.essay_card_head,
+.book_card_head {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,21 +13,57 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.essay_card_title {
+.essay_card_title,
+.book_card_title {
   font-size: 0.8rem;
 }
 
-.essay_card_title p {
+.essay_card_title p,
+.book_card_title p {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.essay_card_options {
+.essay_card_options,
+.book_card_options {
   display: flex;
   justify-content: flex-end;
   font-size: 1.5rem;
 }
 
-.essay_card_option_button {
+.essay_card_body,
+.book_card_body {
+  margin-top: 10px;
+}
+
+.book_card_body {
+  display: flex;
+  align-items: center;
+}
+
+.book_card_body img {
+  max-height: 150px;
+  padding-right: 10px;
+}
+
+.essay_card_body p,
+.book_card_body p {
+  margin: 10px 0;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.essay_card_body a,
+.book_card_body a {
+  text-decoration: none;
+  color: inherit;
+  color: burlywood;
+}
+
+.essay_card_body a:hover,
+.book_card_body a:hover {
+  text-decoration: underline;
+}
+
+.card_option_button {
   display: inline;
   background-color: transparent;
   border: none;
@@ -34,24 +72,9 @@
   margin: 0;
 }
 
-.essay_card_option_button:hover {
+.card_option_button:hover {
   background-color: transparent;
   box-shadow: none;
-}
-
-.essay_card_body p {
-  margin: 10px 0;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-.essay_card_body a {
-  text-decoration: none;
-  color: inherit;
-  color: burlywood;
-}
-
-.essay_card_body a:hover {
-  text-decoration: underline;
 }
 
 .essay_modal_body {
@@ -147,4 +170,37 @@
 
 .file_selection button {
   margin: 0;
+}
+
+.tabs {
+  display: flex;
+  /* border-bottom: 1px solid burlywood; */
+  margin-bottom: 10px;
+}
+
+.tabs button {
+  /* border: none; */
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid burlywood;
+  width: 100%;
+}
+
+.tabs button:hover {
+  /* border: none;
+  border-top: 1px solid burlywood;
+  border-right: 1px solid burlywood;
+  border-left: 1px solid burlywood; */
+  background-color: transparent;
+  box-shadow: none;
+  color: burlywood;
+  transform: none;
+}
+
+.active_tab {
+  border-top: 1px solid burlywood;
+  border-right: 1px solid burlywood;
+  border-left: 1px solid burlywood;
+  color: burlywood;
 }

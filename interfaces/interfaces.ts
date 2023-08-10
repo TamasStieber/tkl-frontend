@@ -95,3 +95,17 @@ export interface IBookFormData {
   href: string;
   photoUrl: string;
 }
+
+export interface ITabsData {
+  title: string;
+  value: string;
+}
+
+export interface IBookTabsData extends ITabsData {
+  value: "books" | "book-lists";
+}
+
+export enum BooksBookListsTabs {
+  BOOKS = "books",
+  BOOK_LISTS = "book-lists",
+}

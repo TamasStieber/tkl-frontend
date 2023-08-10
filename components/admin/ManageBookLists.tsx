@@ -4,7 +4,7 @@ import BookModal from "./BookModal";
 import Spinner from "../common/Spinner";
 import BookCard from "./BookCard";
 
-const ManageBooks = () => {
+const ManageBookLists = () => {
   const { books, isLoading, error, createBook, deleteBook, isCreating } =
     useBooks();
   const [isOpen, setOpen] = useState(false);
@@ -16,7 +16,7 @@ const ManageBooks = () => {
 
   return (
     <>
-      <button onClick={openModal}>Add Book</button>
+      <button onClick={openModal}>Add Book List</button>
       <BookModal
         isOpen={isOpen}
         closeModal={closeModal}
@@ -31,4 +31,4 @@ const ManageBooks = () => {
   );
 };
 
-export default ManageBooks;
+export default ManageBookLists;

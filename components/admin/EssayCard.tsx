@@ -1,21 +1,27 @@
-import { AdminEssayCardProps } from '@/interfaces/props';
-import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
-import styles from '@/styles/Admin.module.css';
-import AdminEssayCardOptionButton from './AdminEssayCardOptionButton';
-import { useState } from 'react';
-import DeleteEssayModal from './DeleteEssayModal';
+import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+import styles from "@/styles/Admin.module.css";
+import { useState } from "react";
+import DeleteEssayModal from "./DeleteEssayModal";
+import CardOptionButton from "./CardOptionButton";
+import DeleteModal from "./DeleteModal";
+import { Essay } from "@/interfaces/interfaces";
 
-const EssayCard = ({ essay, deleteHandler }: AdminEssayCardProps) => {
+interface EssayCardProps {
+  essay: Essay;
+  deleteHandler: (id: string) => void;
+}
+
+const EssayCard = ({ essay, deleteHandler }: EssayCardProps) => {
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const openDeleteModal = () => setDeleteModalOpen(true);
   const closeDeleteModal = () => setDeleteModalOpen(false);
 
   const date = new Date(essay.createdAt);
-  const formattedDate = date.toLocaleDateString('en-GB', {
-    day: '2-digit',
-    month: 'long',
-    year: 'numeric',
+  const formattedDate = date.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
   });
 
   return (
@@ -27,9 +33,9 @@ const EssayCard = ({ essay, deleteHandler }: AdminEssayCardProps) => {
             <p>{`${formattedDate} • Views: ${essay.openCount}`}</p>
           </div>
           <div className={styles.essay_card_options}>
-            <AdminEssayCardOptionButton
+            <CardOptionButton
               icon={AiOutlineDelete}
-              hoverColor='red'
+              hoverColor="red"
               onClick={openDeleteModal}
             />
           </div>
@@ -37,19 +43,19 @@ const EssayCard = ({ essay, deleteHandler }: AdminEssayCardProps) => {
         <div className={styles.essay_card_body}>
           <p>{essay.description}</p>
           <a
-            href={process.env.BACKEND_URL + '/essays/' + essay.url}
-            target='_blank'
+            href={process.env.BACKEND_URL + "/essays/" + essay.url}
+            target="_blank"
           >
             {essay.url}
           </a>
         </div>
       </div>
 
-      <DeleteEssayModal
-        essay={essay}
+      <DeleteModal
+        titleToDelete={essay.title}
         isOpen={isDeleteModalOpen}
         closeModal={closeDeleteModal}
-        deleteHandler={deleteHandler}
+        deleteHandler={() => deleteHandler(essay._id)}
       />
     </>
   );
