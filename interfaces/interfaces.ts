@@ -96,6 +96,14 @@ export interface IBookFormData {
   photoUrl: string;
 }
 
+export interface IBookListFormData {
+  title: string;
+  description: string;
+  photo: Blob | undefined;
+  isHidden: boolean;
+  books: IBook[];
+}
+
 export interface ITabsData {
   title: string;
   value: string;

@@ -3,10 +3,19 @@ import { useState } from "react";
 import BookModal from "./BookModal";
 import Spinner from "../common/Spinner";
 import BookCard from "./BookCard";
+import useBookLists from "@/hooks/useBookLists";
+import BookListModal from "./BookListModal";
+import BookListCard from "./BookListCard";
 
 const ManageBookLists = () => {
-  const { books, isLoading, error, createBook, deleteBook, isCreating } =
-    useBooks();
+  const {
+    bookLists,
+    isLoading,
+    error,
+    createBookList,
+    deleteBookList,
+    isCreating,
+  } = useBookLists();
   const [isOpen, setOpen] = useState(false);
 
   const openModal = () => setOpen(true);
@@ -17,15 +26,19 @@ const ManageBookLists = () => {
   return (
     <>
       <button onClick={openModal}>Add Book List</button>
-      <BookModal
+      <BookListModal
         isOpen={isOpen}
         closeModal={closeModal}
-        createBook={createBook}
+        createBookList={createBookList}
         isCreating={isCreating}
       />
-      {books.length > 0 &&
-        books.map((book) => (
-          <BookCard key={book._id} book={book} deleteHandler={deleteBook} />
+      {bookLists.length > 0 &&
+        bookLists.map((bookList) => (
+          <BookListCard
+            key={bookList._id}
+            bookList={bookList}
+            deleteHandler={deleteBookList}
+          />
         ))}
     </>
   );

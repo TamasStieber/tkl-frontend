@@ -12,7 +12,10 @@ const Tabs = ({ tabs, activeTab, setFunction }: TabsProps) => {
     <div className={styles.tabs}>
       {tabs.map((tab) => (
         <button
-          className={tab.value === activeTab ? styles.active_tab : undefined}
+          key={tab.value}
+          className={
+            tab.value === activeTab ? styles.active_tab : styles.inactive_tab
+          }
           onClick={() => setFunction(tab.value)}
         >
           {tab.title}

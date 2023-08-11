@@ -1,8 +1,8 @@
-import { EssayModalProps } from '@/interfaces/props';
-import styles from '@/styles/Admin.module.css';
-import { useRef, useState } from 'react';
-import Modal from 'react-modal';
-import Spinner from '../common/Spinner';
+import { EssayModalProps } from "@/interfaces/props";
+import styles from "@/styles/Admin.module.css";
+import { useRef, useState } from "react";
+import Modal from "react-modal";
+import Spinner from "../common/Spinner";
 
 const EssayModal = ({
   isOpen,
@@ -18,10 +18,10 @@ const EssayModal = ({
     string | null
   >(null);
   const [fileInputError, setFileInputError] = useState<string | null>(null);
-  const [fileName, setFileName] = useState('No file selected');
+  const [fileName, setFileName] = useState("No file selected");
   const [characterCount, setCharacterCount] = useState(0);
 
-  Modal.setAppElement('#main');
+  Modal.setAppElement("#main");
 
   const characterLimit = 250;
 
@@ -29,7 +29,7 @@ const EssayModal = ({
     setTitleInputError(null);
     setDescriptionInputError(null);
     setFileInputError(null);
-    setFileName('No file selected');
+    setFileName("No file selected");
     setCharacterCount(0);
     closeModal();
   };
@@ -48,7 +48,7 @@ const EssayModal = ({
   const validateTitleInput = () => {
     if (!titleRef.current) return false;
     if (titleRef.current.value.length === 0) {
-      setTitleInputError('Please fill this field!');
+      setTitleInputError("Please fill this field!");
       return false;
     } else {
       titleInputError && setTitleInputError(null);
@@ -59,7 +59,7 @@ const EssayModal = ({
   const validateDescriptionInput = () => {
     if (!descriptionRef.current) return false;
     if (descriptionRef.current.value.length === 0) {
-      setDescriptionInputError('Please fill this field!');
+      setDescriptionInputError("Please fill this field!");
       return false;
     } else if (descriptionRef.current.value.length > characterLimit) {
       setDescriptionInputError(
@@ -75,7 +75,7 @@ const EssayModal = ({
   const validateFileInput = () => {
     if (!fileInputRef.current) return false;
     if (fileInputRef.current.files?.length === 0) {
-      setFileInputError('Please select a file!');
+      setFileInputError("Please select a file!");
       return false;
     } else {
       fileInputError && setFileInputError(null);
@@ -107,10 +107,10 @@ const EssayModal = ({
       description: descriptionRef.current?.value,
     };
 
-    essayFormData.append('data', JSON.stringify(formData));
+    essayFormData.append("data", JSON.stringify(formData));
     essayFormData.append(
-      'essay',
-      fileInputRef.current?.files ? fileInputRef.current.files[0] : ''
+      "essay",
+      fileInputRef.current?.files ? fileInputRef.current.files[0] : ""
     );
 
     if (await createEssay(essayFormData)) close();
@@ -118,15 +118,15 @@ const EssayModal = ({
 
   const customStyles = {
     content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
     },
     overlay: {
-      backgroundColor: 'rgba(0, 0, 0, 0.2)',
+      backgroundColor: "rgba(0, 0, 0, 0.2)",
     },
   };
 
@@ -135,7 +135,7 @@ const EssayModal = ({
       isOpen={isOpen}
       onRequestClose={close}
       style={customStyles}
-      contentLabel='Example Modal'
+      contentLabel="Essay Modal"
     >
       <div className={styles.essay_modal}>
         <div className={styles.essay_modal_title}>
@@ -143,9 +143,9 @@ const EssayModal = ({
         </div>
         <div className={styles.essay_modal_body}>
           <input
-            type='text'
+            type="text"
             ref={titleRef}
-            placeholder='Title'
+            placeholder="Title"
             onChange={validateTitleInput}
             className={
               titleInputError
@@ -155,7 +155,7 @@ const EssayModal = ({
           />
           <p
             className={styles.error_text}
-            style={{ display: titleInputError ? 'block' : 'none' }}
+            style={{ display: titleInputError ? "block" : "none" }}
           >
             {titleInputError}
           </p>
@@ -177,7 +177,7 @@ const EssayModal = ({
           <p>{`${characterCount} / ${characterLimit}`}</p>
           <p
             className={styles.error_text}
-            style={{ display: descriptionInputError ? 'block' : 'none' }}
+            style={{ display: descriptionInputError ? "block" : "none" }}
           >
             {descriptionInputError}
           </p>
@@ -187,16 +187,16 @@ const EssayModal = ({
           </div>
           <p
             className={styles.error_text}
-            style={{ display: fileInputError ? 'block' : 'none' }}
+            style={{ display: fileInputError ? "block" : "none" }}
           >
             {fileInputError}
           </p>
           <input
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
             ref={fileInputRef}
-            type='file'
-            name='essay'
-            id='essay'
+            type="file"
+            name="essay"
+            id="essay"
             onChange={updateFileName}
           />
         </div>
@@ -206,7 +206,7 @@ const EssayModal = ({
             className={styles.upload_button}
             disabled={isCreating}
           >
-            {isCreating ? <Spinner size={30} /> : 'Upload'}
+            {isCreating ? <Spinner size={30} /> : "Upload"}
           </button>
           <button onClick={close}>Cancel</button>
         </div>
