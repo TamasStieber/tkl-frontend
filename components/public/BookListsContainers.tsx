@@ -1,17 +1,19 @@
-import useBooks from "@/hooks/useBooks";
-import Spinner from "../common/Spinner";
-import styles from "@/styles/Home.module.css";
-import BookCard from "./BookCard";
+import Spinner from '../common/Spinner';
+import styles from '@/styles/Home.module.css';
+import useBookLists from '@/hooks/useBookLists';
+import BookListCard from './BookListCard';
 
 const BookListsContainer = () => {
-  const { books, isLoading, error } = useBooks();
+  const { bookLists, isLoading, error } = useBookLists();
 
   if (isLoading) return <Spinner />;
 
   return (
     <div className={styles.grid_container}>
-      {books.length > 0 &&
-        books.map((book) => <BookCard key={book._id} book={book} />)}
+      {bookLists.length > 0 &&
+        bookLists.map((bookList) => (
+          <BookListCard key={bookList._id} bookList={bookList} />
+        ))}
     </div>
   );
 };

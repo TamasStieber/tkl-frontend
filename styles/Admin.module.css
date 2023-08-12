@@ -98,7 +98,7 @@
 .book_list_modal_input,
 .book_list_modal_input_error {
   margin-top: 20px;
-  min-width: 400px;
+  /* min-width: 400px; */
   font-family: inherit;
   font-size: 16px;
   padding: 5px;
@@ -106,26 +106,31 @@
 }
 
 .essay_modal_input,
-.book_list_modal_input {
+.book_list_modal_input,
+.book_list_container input {
   border: 1px solid rgba(128, 128, 128, 0.3);
 }
 
 .essay_modal_input:hover,
-.essay_modal_input_error:hover .book_list_modal_input:hover,
-.book_list_modal_input_error:hover {
+.essay_modal_input_error:hover,
+.book_list_modal_input:hover,
+.book_list_modal_input_error:hover,
+.book_list_container input:hover {
   background-color: rgba(200, 200, 200, 0.05);
 }
 
 .essay_modal_input:focus,
 .essay_modal_input_error:focus,
 .book_list_modal_input:focus,
-.book_list_modal_input_error:focus {
+.book_list_modal_input_error:focus,
+.book_list_container input:focus {
   outline: none;
   background-color: transparent;
 }
 
 .essay_modal_input:focus,
-.book_list_modal_input:focus {
+.book_list_modal_input:focus,
+.book_list_container input:focus {
   border: 1px solid burlywood;
 }
 
@@ -144,15 +149,49 @@
 
 .book_list_modal_book_selection {
   display: flex;
-  align-items: center;
   margin: 10px 0;
+  column-gap: 10px;
 }
 
 .book_list_container {
-  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  flex-basis: 50%;
+}
+
+.book_list_container > p {
+  font-weight: bold;
+  text-align: center;
+}
+
+.book_list_container input {
+  margin: 5px 0;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .book_list {
+  height: 200px;
+  overflow-y: auto;
+}
+
+.book_list_element {
+  border: 1px solid rgba(222, 184, 135, 0.5);
+  color: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  margin: 5px;
+  padding: 5px 10px;
+}
+
+.book_list_element:hover {
+  cursor: pointer;
+  border: 1px solid rgba(222, 184, 135, 0.5);
+  color: rgba(222, 184, 135);
+  background-color: rgba(222, 184, 135, 0.1);
 }
 
 .error_text {
@@ -243,4 +282,18 @@
   color: burlywood;
   border-bottom: 1px solid burlywood;
   background-color: rgba(222, 184, 135, 0.1);
+}
+
+@media only screen and (min-width: 1200px) {
+  .essay_modal_input,
+  .essay_modal_input_error,
+  .book_list_modal_input,
+  .book_list_modal_input_error {
+    margin-top: 20px;
+    min-width: 400px;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 5px;
+  }
 }
