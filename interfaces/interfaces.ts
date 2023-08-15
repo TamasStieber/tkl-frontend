@@ -117,3 +117,8 @@ export enum BooksBookListsTabs {
   BOOKS = "books",
   BOOK_LISTS = "book-lists",
 }
+
+export interface ILoginData {
+  email: string;
+  password: string;
+}
