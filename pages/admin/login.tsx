@@ -38,7 +38,9 @@ const Login = () => {
             />
             {errors.password && <span>This field is required</span>}
 
-            <input type="submit" disabled={isLoading} />
+            <button type="submit" disabled={isLoading}>
+              Log in
+            </button>
           </div>
         </form>
       </div>

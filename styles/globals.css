@@ -145,6 +145,24 @@ button:disabled:hover {
   transform: none;
 }
 
+input {
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  margin-top: 20px;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: none;
+  background-color: transparent;
+}
+
+input:hover {
+  background-color: rgba(200, 200, 200, 0.05);
+}
+
 @media only screen and (max-width: 600px) {
 }
 

@@ -93,46 +93,45 @@
   margin: 30px 0;
 }
 
-.essay_modal_input,
+/* .essay_modal_input,
 .essay_modal_input_error,
 .book_list_modal_input,
 .book_list_modal_input_error {
   margin-top: 20px;
-  /* min-width: 400px; */
   font-family: inherit;
   font-size: 16px;
   padding: 5px;
   border-radius: 5px;
-}
+} */
 
-.essay_modal_input,
+/* .essay_modal_input,
 .book_list_modal_input,
 .book_list_container input {
   border: 1px solid rgba(128, 128, 128, 0.3);
-}
+} */
 
-.essay_modal_input:hover,
+/* .essay_modal_input:hover,
 .essay_modal_input_error:hover,
 .book_list_modal_input:hover,
 .book_list_modal_input_error:hover,
 .book_list_container input:hover {
   background-color: rgba(200, 200, 200, 0.05);
-}
+} */
 
-.essay_modal_input:focus,
+/* .essay_modal_input:focus,
 .essay_modal_input_error:focus,
 .book_list_modal_input:focus,
 .book_list_modal_input_error:focus,
 .book_list_container input:focus {
   outline: none;
   background-color: transparent;
-}
+} */
 
-.essay_modal_input:focus,
+/* .essay_modal_input:focus,
 .book_list_modal_input:focus,
 .book_list_container input:focus {
   border: 1px solid burlywood;
-}
+} */
 
 .essay_modal_input_error,
 .essay_modal_input_error:focus,
@@ -299,6 +298,7 @@
   align-content: center;
   gap: 10px;
   width: 300px;
+  padding: 10px;
 }
 
 .login_form input {
