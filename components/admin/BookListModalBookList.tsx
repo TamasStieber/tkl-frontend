@@ -1,35 +1,60 @@
-import { IBook } from "@/interfaces/interfaces";
-import styles from "@/styles/Admin.module.css";
-import { useRef, useState } from "react";
+import { IBook } from '@/interfaces/interfaces';
+import styles from '@/styles/Admin.module.css';
+import { useEffect, useRef, useState } from 'react';
 
 interface BookListModalBookListProps {
   books: IBook[];
+  searchBox?: boolean;
+  title: string;
+  onClick: (book: IBook) => void;
 }
 
-const BookListModalBookList = ({ books }: BookListModalBookListProps) => {
+const BookListModalBookList = ({
+  books,
+  searchBox = false,
+  title,
+  onClick,
+}: BookListModalBookListProps) => {
   const [displayedBooks, setDisplayedBooks] = useState<IBook[]>([]);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const searchBooks = () => {
-    if (!searchInputRef.current) return;
+  useEffect(() => {
+    setDisplayedBooks(applyFilter(books));
+  }, [books]);
+
+  const applyFilter = (books: IBook[]) => {
+    if (!searchInputRef.current) return books;
     const filter = searchInputRef.current.value;
     const filteredBooks = books.filter((book) =>
       book.title.toLowerCase().includes(filter)
     );
-    setDisplayedBooks(filteredBooks);
+    return filteredBooks;
+  };
+
+  const searchBooks = () => {
+    setDisplayedBooks(applyFilter(books));
   };
 
   return (
     <div className={styles.book_list_container}>
-      <input
-        ref={searchInputRef}
-        onChange={searchBooks}
-        type="text"
-        placeholder="Search for books"
-      />
+      <p>{title}</p>
+      {searchBox && (
+        <input
+          ref={searchInputRef}
+          onChange={searchBooks}
+          type='text'
+          placeholder='Search for books'
+        />
+      )}
       <div className={styles.book_list}>
         {displayedBooks.map((book) => (
-          <p>{book.title}</p>
+          <div
+            key={book._id}
+            className={styles.book_list_element}
+            onClick={() => onClick(book)}
+          >
+            {book.title}
+          </div>
         ))}
       </div>
     </div>

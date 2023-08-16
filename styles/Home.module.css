@@ -6,7 +6,7 @@
 
 .quote {
   display: none;
-  font-family: "Lora", serif;
+  font-family: 'Lora', serif;
   text-align: center;
 }
 
@@ -79,10 +79,6 @@
   cursor: pointer;
 }
 
-.book_card:hover {
-  /* box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px; */
-}
-
 .book_card:hover .book_card_title {
   color: burlywood;
 }
@@ -101,6 +97,50 @@
   font-size: 0.8rem;
   color: gray;
   margin: 5px 0;
+}
+
+.book_list_card {
+  position: relative;
+  opacity: 0.7;
+  transition: all 0.3s;
+}
+
+.book_list_card:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.book_list_card_background,
+.book_list_card_grid_background {
+  width: 350px;
+  height: 350px;
+}
+
+.book_list_card_background {
+  background-size: cover;
+}
+
+.book_list_card_grid_background {
+  display: grid;
+}
+
+.book_list_card_background_element {
+  background-size: cover;
+}
+
+.book_list_card_title {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 80%;
+  width: 80%;
+  background-color: rgba(255, 248, 238, 0.9);
+  color: rgba(0, 0, 0, 0.7);
+  top: 10%;
+  left: 10%;
+  font-size: 40px;
 }
 
 .post {

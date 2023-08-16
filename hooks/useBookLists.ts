@@ -1,5 +1,5 @@
-import { IBookList, IBookListFormData } from "@/interfaces/interfaces";
-import { useEffect, useState } from "react";
+import { IBookList, IBookListFormData } from '@/interfaces/interfaces';
+import { useEffect, useState } from 'react';
 
 const useBookLists = () => {
   const [bookLists, setBookLists] = useState<IBookList[]>([]);
@@ -35,11 +35,8 @@ const useBookLists = () => {
     setCreating(true);
     try {
       const response = await fetch(`${process.env.BACKEND_URL}/book-lists`, {
-        method: "post",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        method: 'post',
+        body: formData,
       });
 
       const data = await response.json();
@@ -60,7 +57,7 @@ const useBookLists = () => {
 
   const updateBookList = (id: string) => {
     try {
-      fetch(url + id, { method: "put" })
+      fetch(url + id, { method: 'put' })
         .then((response) => response.json())
         .then((data) => {
           if (data.error) {
@@ -74,7 +71,7 @@ const useBookLists = () => {
 
   const deleteBookList = (id: string) => {
     try {
-      fetch(url + id, { method: "delete" })
+      fetch(url + id, { method: 'delete' })
         .then((response) => response.json())
         .then((data) => {
           if (!data.error) {

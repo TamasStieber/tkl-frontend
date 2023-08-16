@@ -12,18 +12,26 @@ interface NavbarProps {
 }
 
 const Navbar = ({ display, showMenu }: NavbarProps) => {
-  const menuItemsToDisplay = display === 'public' ? publicMmenuItems : adminMenuItems;
+  const isPublicMenu = display === 'public';
+  const menuItemsToDisplay = isPublicMenu ? publicMmenuItems : adminMenuItems;
 
   const router = useRouter();
+
+  const isActiveLink = (href: string) => {
+    const index = isPublicMenu ? 1 : 2;
+    const rawHref = '/' + href.split('/')[index];
+    const rawRoute = '/' + router.pathname.split('/')[index];
+
+    if (rawHref === rawRoute) return true;
+    return false;
+  };
 
   return (
     <>
       <nav>
         {menuItemsToDisplay.map((menuItem) => (
           <a
-            className={
-              menuItem.href === router.pathname ? styles.active : undefined
-            }
+            className={isActiveLink(menuItem.href) ? styles.active : undefined}
             key={menuItem.href}
             href={menuItem.href}
           >
@@ -37,9 +45,7 @@ const Navbar = ({ display, showMenu }: NavbarProps) => {
       >
         {menuItemsToDisplay.map((menuItem) => (
           <a
-            className={
-              menuItem.href === router.pathname ? styles.active : undefined
-            }
+            className={isActiveLink(menuItem.href) ? styles.active : undefined}
             key={menuItem.href}
             href={menuItem.href}
           >
