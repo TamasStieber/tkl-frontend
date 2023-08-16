@@ -284,6 +284,26 @@
   background-color: rgba(222, 184, 135, 0.1);
 }
 
+.login_form_container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 10px;
+  width: 300px;
+}
+
+.login_form input {
+  font-family: inherit;
+
 @media only screen and (min-width: 1200px) {
   .essay_modal_input,
   .essay_modal_input_error,
