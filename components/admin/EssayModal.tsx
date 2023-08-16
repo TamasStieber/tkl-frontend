@@ -21,7 +21,7 @@ const EssayModal = ({
   const [fileName, setFileName] = useState("No file selected");
   const [characterCount, setCharacterCount] = useState(0);
 
-  Modal.setAppElement("#main");
+  Modal.setAppElement("#__next");
 
   const characterLimit = 250;
 

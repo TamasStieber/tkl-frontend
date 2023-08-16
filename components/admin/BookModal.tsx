@@ -32,7 +32,7 @@ const BookModal = ({
     null
   );
 
-  Modal.setAppElement("#main");
+  Modal.setAppElement("#__next");
 
   const characterLimit = 1250;
 

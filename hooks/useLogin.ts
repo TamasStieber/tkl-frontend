@@ -1,10 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { setCookie } from "nookies";
 import { ILoginData } from "@/interfaces/interfaces";
+import useAuthorization from "./useAuthorization";
 
 const useLogin = () => {
+  const [isLoggedIn, setLoggedIn] = useState<boolean | undefined>(undefined);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const { checkAuthorization } = useAuthorization();
+
+  useEffect(() => {
+    const authorize = async () => {
+      const isAuthenticated = await checkAuthorization();
+      setLoggedIn(isAuthenticated);
+    };
+
+    authorize();
+  }, [checkAuthorization]);
 
   const url = `${process.env.BACKEND_URL}/login/`;
 
@@ -25,7 +37,9 @@ const useLogin = () => {
       if (data.token) {
         setCookie(null, "token", data.token, {
           maxAge: 60 * 60 * 24,
+          path: "/admin",
         });
+        setLoggedIn(true);
       }
     } catch (error) {
       setError(error as Error);
@@ -34,7 +48,7 @@ const useLogin = () => {
     }
   };
 
-  return { isLoading, error, attemptLogin };
+  return { isLoading, error, isLoggedIn, attemptLogin };
 };
 
 export default useLogin;

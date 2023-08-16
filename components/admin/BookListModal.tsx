@@ -1,10 +1,10 @@
-import styles from '@/styles/Admin.module.css';
-import { useEffect, useRef, useState } from 'react';
-import Modal from 'react-modal';
-import Spinner from '../common/Spinner';
-import useBooks from '@/hooks/useBooks';
-import { IBook } from '@/interfaces/interfaces';
-import BookListModalBookList from './BookListModalBookList';
+import styles from "@/styles/Admin.module.css";
+import { useEffect, useRef, useState } from "react";
+import Modal from "react-modal";
+import Spinner from "../common/Spinner";
+import useBooks from "@/hooks/useBooks";
+import { IBook } from "@/interfaces/interfaces";
+import BookListModalBookList from "./BookListModalBookList";
 
 interface BookListModalProps {
   isOpen: boolean;
@@ -29,12 +29,12 @@ const BookListModal = ({
     string | null
   >(null);
   const [fileInputError, setFileInputError] = useState<string | null>(null);
-  const [fileName, setFileName] = useState('No file selected');
+  const [fileName, setFileName] = useState("No file selected");
   const [characterCount, setCharacterCount] = useState(0);
   const [availableBooks, setAvailableBooks] = useState<IBook[]>([]);
   const [selectedBooks, setSelectedBooks] = useState<IBook[]>([]);
 
-  Modal.setAppElement('#main');
+  Modal.setAppElement("#__next");
 
   const sortBooks = (books: IBook[]) => {
     const sortedBooks = books.sort((a, b) => {
@@ -76,7 +76,7 @@ const BookListModal = ({
     setTitleInputError(null);
     setDescriptionInputError(null);
     setFileInputError(null);
-    setFileName('No file selected');
+    setFileName("No file selected");
     setCharacterCount(0);
     setAvailableBooks(books);
     setSelectedBooks([]);
@@ -97,7 +97,7 @@ const BookListModal = ({
   const validateTitleInput = () => {
     if (!titleRef.current) return false;
     if (titleRef.current.value.length === 0) {
-      setTitleInputError('Please fill this field!');
+      setTitleInputError("Please fill this field!");
       return false;
     } else {
       titleInputError && setTitleInputError(null);
@@ -108,7 +108,7 @@ const BookListModal = ({
   const validateDescriptionInput = () => {
     if (!descriptionRef.current) return false;
     if (descriptionRef.current.value.length === 0) {
-      setDescriptionInputError('Please fill this field!');
+      setDescriptionInputError("Please fill this field!");
       return false;
     } else {
       descriptionInputError && setDescriptionInputError(null);
@@ -119,7 +119,7 @@ const BookListModal = ({
   const validateFileInput = () => {
     if (!fileInputRef.current) return false;
     if (fileInputRef.current.files?.length === 0) {
-      setFileInputError('Please select a file!');
+      setFileInputError("Please select a file!");
       return false;
     } else {
       fileInputError && setFileInputError(null);
@@ -156,10 +156,10 @@ const BookListModal = ({
       isHidden: isHiddenRef.current?.checked,
     };
 
-    bookListFormData.append('data', JSON.stringify(formData));
+    bookListFormData.append("data", JSON.stringify(formData));
     bookListFormData.append(
-      'photo',
-      fileInputRef.current?.files ? fileInputRef.current.files[0] : ''
+      "photo",
+      fileInputRef.current?.files ? fileInputRef.current.files[0] : ""
     );
 
     if (await createBookList(bookListFormData)) close();
@@ -167,15 +167,15 @@ const BookListModal = ({
 
   const customStyles = {
     content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
     },
     overlay: {
-      backgroundColor: 'rgba(0, 0, 0, 0.2)',
+      backgroundColor: "rgba(0, 0, 0, 0.2)",
     },
   };
 
@@ -184,7 +184,7 @@ const BookListModal = ({
       isOpen={isOpen}
       onRequestClose={close}
       style={customStyles}
-      contentLabel='Book List Modal'
+      contentLabel="Book List Modal"
     >
       <div className={styles.book_list_modal}>
         <div className={styles.book_list_modal_title}>
@@ -192,9 +192,9 @@ const BookListModal = ({
         </div>
         <div className={styles.book_list_modal_body}>
           <input
-            type='text'
+            type="text"
             ref={titleRef}
-            placeholder='Title'
+            placeholder="Title"
             onChange={validateTitleInput}
             className={
               titleInputError
@@ -204,7 +204,7 @@ const BookListModal = ({
           />
           <p
             className={styles.error_text}
-            style={{ display: titleInputError ? 'block' : 'none' }}
+            style={{ display: titleInputError ? "block" : "none" }}
           >
             {titleInputError}
           </p>
@@ -225,7 +225,7 @@ const BookListModal = ({
           ></textarea>
           <p
             className={styles.error_text}
-            style={{ display: descriptionInputError ? 'block' : 'none' }}
+            style={{ display: descriptionInputError ? "block" : "none" }}
           >
             {descriptionInputError}
           </p>
@@ -233,12 +233,12 @@ const BookListModal = ({
             <BookListModalBookList
               books={availableBooks}
               searchBox
-              title='Available Books'
+              title="Available Books"
               onClick={handleAvailableBooksClick}
             />
             <BookListModalBookList
               books={selectedBooks}
-              title='Selected Books'
+              title="Selected Books"
               onClick={handleSelectedBooksClick}
             />
           </div>
@@ -247,19 +247,19 @@ const BookListModal = ({
             <p>{`Selected file: ${fileName}`}</p>
           </div>
           <input
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
             ref={fileInputRef}
-            type='file'
-            accept='image/*'
-            name='book-list-image'
-            id='book-list-image'
+            type="file"
+            accept="image/*"
+            name="book-list-image"
+            id="book-list-image"
             onChange={updateFileName}
           />
           <input
             ref={isHiddenRef}
-            type='checkbox'
-            name='is-hidden'
-            id='is-hidden'
+            type="checkbox"
+            name="is-hidden"
+            id="is-hidden"
           />
         </div>
         <div className={styles.modal_buttons}>
@@ -268,7 +268,7 @@ const BookListModal = ({
             className={styles.upload_button}
             disabled={isCreating}
           >
-            {isCreating ? <Spinner size={30} /> : 'Add'}
+            {isCreating ? <Spinner size={30} /> : "Add"}
           </button>
           <button onClick={close}>Cancel</button>
         </div>
