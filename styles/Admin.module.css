@@ -303,6 +303,7 @@
 
 .login_form input {
   font-family: inherit;
+}
 
 @media only screen and (min-width: 1200px) {
   .essay_modal_input,
