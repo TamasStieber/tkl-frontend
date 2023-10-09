@@ -122,3 +122,10 @@ export interface ILoginData {
   email: string;
   password: string;
 }
+
+export interface IEssayModalInitialValues {
+  id: string;
+  title: string;
+  description: string;
+  essay: string;
+}

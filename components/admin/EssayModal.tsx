@@ -1,14 +1,25 @@
-import { EssayModalProps } from "@/interfaces/props";
 import styles from "@/styles/Admin.module.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
 import Spinner from "../common/Spinner";
+import { IEssayModalInitialValues } from "@/interfaces/interfaces";
+
+interface EssayModalProps {
+  isOpen: boolean;
+  closeModal: () => void;
+  createEssay: (formData: FormData) => Promise<boolean>;
+  updateEssay: (id: string, formData: FormData) => Promise<boolean>;
+  isModalLoading: boolean;
+  initialValues: IEssayModalInitialValues | undefined;
+}
 
 const EssayModal = ({
   isOpen,
   closeModal,
   createEssay,
-  isCreating,
+  updateEssay,
+  isModalLoading,
+  initialValues,
 }: EssayModalProps) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
@@ -21,7 +32,22 @@ const EssayModal = ({
   const [fileName, setFileName] = useState("No file selected");
   const [characterCount, setCharacterCount] = useState(0);
 
+  useEffect(() => {
+    if (initialValues && initialValues.essay) {
+      setFileName(initialValues.essay);
+    }
+    if (initialValues && initialValues.description) {
+      setCharacterCount(initialValues.description.length);
+    }
+  }, [initialValues]);
+
   Modal.setAppElement("#__next");
+
+  const submitButtonText = initialValues ? "Update" : "Upload";
+
+  const id = initialValues?.id || "";
+  const title = initialValues?.title || "";
+  const description = initialValues?.description || "";
 
   const characterLimit = 250;
 
@@ -86,7 +112,7 @@ const EssayModal = ({
   const validateForm = () => {
     const isTitleValid = validateTitleInput();
     const isDescriptionValid = validateDescriptionInput();
-    const isFileValid = validateFileInput();
+    const isFileValid = initialValues ? true : validateFileInput();
 
     if (isTitleValid && isDescriptionValid && isFileValid) {
       return true;
@@ -113,7 +139,11 @@ const EssayModal = ({
       fileInputRef.current?.files ? fileInputRef.current.files[0] : ""
     );
 
-    if (await createEssay(essayFormData)) close();
+    if (initialValues && initialValues.id) {
+      if (await updateEssay(initialValues.id, essayFormData)) close();
+    } else {
+      if (await createEssay(essayFormData)) close();
+    }
   };
 
   const customStyles = {
@@ -146,6 +176,7 @@ const EssayModal = ({
             type="text"
             ref={titleRef}
             placeholder="Title"
+            defaultValue={title}
             onChange={validateTitleInput}
             className={
               titleInputError
@@ -164,6 +195,7 @@ const EssayModal = ({
             cols={30}
             rows={4}
             placeholder={`Description (max. ${characterLimit} characters)`}
+            defaultValue={description}
             onChange={() => {
               validateDescriptionInput();
               updateCharacterCount();
@@ -204,9 +236,9 @@ const EssayModal = ({
           <button
             onClick={submitHandler}
             className={styles.upload_button}
-            disabled={isCreating}
+            disabled={isModalLoading}
           >
-            {isCreating ? <Spinner size={30} /> : "Upload"}
+            {isModalLoading ? <Spinner size={30} /> : submitButtonText}
           </button>
           <button onClick={close}>Cancel</button>
         </div>

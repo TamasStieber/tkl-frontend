@@ -4,7 +4,7 @@ import useEssays from "@/hooks/useEssays";
 import Spinner from "../common/Spinner";
 
 const EssaysContainer = () => {
-  const { essays, updateEssay, isLoading } = useEssays();
+  const { essays, updateEssayViewCount, isLoading } = useEssays();
 
   if (isLoading) return <Spinner />;
 
@@ -15,7 +15,7 @@ const EssaysContainer = () => {
           <EssayCard
             key={essay._id}
             essay={essay}
-            updateHandler={() => updateEssay(essay._id)}
+            updateHandler={() => updateEssayViewCount(essay._id)}
           />
         ))}
     </div>

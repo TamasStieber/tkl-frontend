@@ -3,14 +3,31 @@ import EssayModal from "./EssayModal";
 import { useState } from "react";
 import Spinner from "../common/Spinner";
 import EssayCard from "./EssayCard";
+import { IEssayModalInitialValues } from "@/interfaces/interfaces";
 
 const ManageEssays = () => {
-  const { essays, createEssay, deleteEssay, isLoading, isCreating } =
-    useEssays();
+  const {
+    essays,
+    createEssay,
+    updateEssay,
+    deleteEssay,
+    isLoading,
+    isModalLoading,
+  } = useEssays();
   const [isOpen, setOpen] = useState(false);
+  const [initialValues, setInitialValues] = useState<
+    IEssayModalInitialValues | undefined
+  >(undefined);
 
   const openModal = () => setOpen(true);
-  const closeModal = () => setOpen(false);
+  const closeModal = () => {
+    setInitialValues(undefined);
+    setOpen(false);
+  };
+  const openModalForEdit = (initialValues: IEssayModalInitialValues) => {
+    setInitialValues(initialValues);
+    openModal();
+  };
 
   if (isLoading) return <Spinner />;
 
@@ -21,7 +38,9 @@ const ManageEssays = () => {
         isOpen={isOpen}
         closeModal={closeModal}
         createEssay={createEssay}
-        isCreating={isCreating}
+        updateEssay={updateEssay}
+        isModalLoading={isModalLoading}
+        initialValues={initialValues}
       />
       {essays.length > 0 &&
         essays.map((essay) => (
@@ -29,6 +48,7 @@ const ManageEssays = () => {
             key={essay._id}
             essay={essay}
             deleteHandler={deleteEssay}
+            updateHandler={openModalForEdit}
           />
         ))}
     </>

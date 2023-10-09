@@ -4,18 +4,28 @@ import { useState } from "react";
 import DeleteEssayModal from "./DeleteEssayModal";
 import CardOptionButton from "./CardOptionButton";
 import DeleteModal from "./DeleteModal";
-import { Essay } from "@/interfaces/interfaces";
+import { Essay, IEssayModalInitialValues } from "@/interfaces/interfaces";
 
 interface EssayCardProps {
   essay: Essay;
   deleteHandler: (id: string) => void;
+  updateHandler: (initialValues: IEssayModalInitialValues) => void;
 }
 
-const EssayCard = ({ essay, deleteHandler }: EssayCardProps) => {
+const EssayCard = ({ essay, deleteHandler, updateHandler }: EssayCardProps) => {
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const openDeleteModal = () => setDeleteModalOpen(true);
   const closeDeleteModal = () => setDeleteModalOpen(false);
+  const openUpdateModal = () => {
+    const initialValues = {
+      id: essay._id,
+      title: essay.title,
+      description: essay.description,
+      essay: essay.url,
+    };
+    updateHandler(initialValues);
+  };
 
   const date = new Date(essay.createdAt);
   const formattedDate = date.toLocaleDateString("en-GB", {
@@ -33,6 +43,11 @@ const EssayCard = ({ essay, deleteHandler }: EssayCardProps) => {
             <p>{`${formattedDate} • Views: ${essay.openCount}`}</p>
           </div>
           <div className={styles.essay_card_options}>
+            <CardOptionButton
+              icon={AiOutlineEdit}
+              hoverColor="blue"
+              onClick={openUpdateModal}
+            />
             <CardOptionButton
               icon={AiOutlineDelete}
               hoverColor="red"

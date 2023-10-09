@@ -1,12 +1,14 @@
-import { Essay } from '@/interfaces/interfaces';
-import { useEffect, useState } from 'react';
+import { Essay } from "@/interfaces/interfaces";
+import { useEffect, useState } from "react";
 
 const useEssays = () => {
   const [essays, setEssays] = useState<Essay[]>([]);
   const [isLoading, setLoading] = useState(false);
-  const [isCreating, setCreating] = useState(false);
+  const [isModalLoading, setModalLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [creationError, setCreationError] = useState<Error | null>(null);
+  const [updateError, setUpdateError] = useState<Error | null>(null);
+  const [refreshTrigger, setRefreshTrigger] = useState(false);
 
   const url = `${process.env.BACKEND_URL}/essays/`;
 
@@ -19,7 +21,7 @@ const useEssays = () => {
         if (!data.error) {
           setEssays(data);
         } else {
-          setError(new Error('An error occurred'));
+          setError(new Error("An error occurred"));
         }
       } catch (error) {
         setError(error as Error);
@@ -29,54 +31,13 @@ const useEssays = () => {
     };
 
     fetchEssays();
-    // try {
-    // fetch(url)
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (!data.error) {
-    //       setEssays(data);
-    //     } else {
-    //       setError(new Error('An error occurred'));
-    //     }
-    //   });
-    // } catch (error) {
-    //   setError(error as Error);
-    // } finally {
-    //   setLoading(false);
-    //   console.log('fin');
-    // }
-  }, [url]);
-
-  // const createEssay = (formData: FormData) => {
-  //   setCreating(true);
-  //   let success = false;
-  //   try {
-  //     fetch(`${process.env.BACKEND_URL}/essays`, {
-  //       method: 'post',
-  //       body: formData,
-  //     }).then((response) =>
-  //       response.json().then((data) => {
-  //         if (!data.error) {
-  //           success = true;
-  //           setEssays([data, ...essays]);
-  //         } else {
-  //           setCreationError(new Error('An error occurred'));
-  //         }
-  //       })
-  //     );
-  //   } catch (error) {
-  //     setCreationError(error as Error);
-  //   } finally {
-  //     setCreating(false);
-  //     return success;
-  //   }
-  // };
+  }, [url, refreshTrigger]);
 
   const createEssay = async (formData: FormData) => {
-    setCreating(true);
+    setModalLoading(true);
     try {
-      const response = await fetch(`${process.env.BACKEND_URL}/essays`, {
-        method: 'post',
+      const response = await fetch(url, {
+        method: "post",
         body: formData,
       });
 
@@ -85,24 +46,24 @@ const useEssays = () => {
         setEssays([data, ...essays]);
         return true;
       } else {
-        setCreationError(new Error('An error occurred'));
+        setCreationError(new Error("An error occurred"));
         return false;
       }
     } catch (error) {
       setCreationError(error as Error);
       return false;
     } finally {
-      setCreating(false);
+      setModalLoading(false);
     }
   };
 
-  const updateEssay = (id: string) => {
+  const updateEssayViewCount = (id: string) => {
     try {
-      fetch(url + id, { method: 'put' })
+      fetch(url + id + "/update-count", { method: "put" })
         .then((response) => response.json())
         .then((data) => {
           if (data.error) {
-            setError(new Error('An error occurred'));
+            setError(new Error("An error occurred"));
           }
         });
     } catch (error) {
@@ -110,16 +71,40 @@ const useEssays = () => {
     }
   };
 
+  const updateEssay = async (id: string, formData: FormData) => {
+    setModalLoading(true);
+    try {
+      const response = await fetch(url + id, {
+        method: "put",
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (!data.error) {
+        setRefreshTrigger(!refreshTrigger);
+        return true;
+      } else {
+        setUpdateError(new Error("An error occurred"));
+        return false;
+      }
+    } catch (error) {
+      setUpdateError(error as Error);
+      return false;
+    } finally {
+      setModalLoading(false);
+    }
+  };
+
   const deleteEssay = (id: string) => {
     try {
-      fetch(url + id, { method: 'delete' })
+      fetch(url + id, { method: "delete" })
         .then((response) => response.json())
         .then((data) => {
           if (!data.error) {
             const filteredEssays = essays.filter((essay) => essay._id !== id);
             setEssays(filteredEssays);
           } else {
-            setError(new Error('An error occurred'));
+            setError(new Error("An error occurred"));
           }
         });
     } catch (error) {
@@ -130,11 +115,13 @@ const useEssays = () => {
   return {
     essays,
     isLoading,
-    isCreating,
+    isModalLoading,
     error,
     creationError,
+    updateError,
     createEssay,
     updateEssay,
+    updateEssayViewCount,
     deleteEssay,
   };
 };
